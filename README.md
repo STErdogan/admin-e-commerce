@@ -1,5 +1,6 @@
 # ST-Ecommerce with Nextjs
-## v0.1.0
+## v0.1.1
+Products some progress 
 
 ## Getting Started
 

@@ -36,8 +36,12 @@ export default function Products() {
             <tr key={product._id} id={product._id}>
               <td>{product.title}</td>
               <td>
-                <Link href={"products" + product._id}>
-                  <Icons type={IconConst.PEN} className="w-3 h-3" />
+                <Link href={"products/edit/" + product._id}>
+                  <Icons type={IconConst.PEN} className="w-4 h-4" />
+                </Link>
+
+                <Link href={"products/delete/" + product._id}>
+                  <Icons type={IconConst.TRASH} className="w-4 h-4" />
                 </Link>
               </td>
             </tr>
