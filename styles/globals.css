@@ -8,36 +8,38 @@ img {
 }
 
 input,
-textarea {
-	@apply border-2 border-gray-300 rounded-md px-1 w-full text-gray-800;
+textarea,
+select {
+	@apply border-2 border-gray-300 rounded-md px-1 w-full text-gray-700;
 	@apply mb-2;
 }
 input:focus,
-textarea:focus {
-	@apply border-blue-900 border-2 rounded-md placeholder-blue-400 text-blue-900;
+textarea:focus,
+select:focus {
+	@apply border-2 border-teal-700 rounded-md placeholder-teal-700 text-teal-800 outline-none;
 }
 h1 {
-	@apply text-blue-900 mb-2 text-xl;
+	@apply text-teal-800 mb-2 text-xl;
 }
 label {
-	@apply text-blue-900;
+	@apply text-teal-800;
 }
 .btn-primary {
-	@apply bg-blue-900 text-white px-4 py-1 rounded-md;
+	@apply bg-teal-800 text-white px-4 py-1 rounded-md;
 }
 table.basic {
 	@apply w-full;
 }
 table.basic thead tr td {
-	@apply bg-blue-100;
+	@apply bg-yellow-50;
 }
 
 table.basic tr td {
-	@apply border border-blue-200 p-1;
+	@apply border border-gray-200 p-1;
 }
 
 table.basic a {
-	@apply bg-blue-900 text-white text-sm py-1 px-2 rounded-md inline-flex gap-1 mr-1;
+	@apply bg-teal-800 text-white text-sm py-1 px-2 rounded-md inline-flex gap-1 mr-1;
 }
 
 .btn-default,
@@ -50,5 +52,5 @@ table.basic a {
 }
 
 .btn-default {
-	@apply bg-blue-900 text-white;
+	@apply bg-teal-800 text-white;
 }

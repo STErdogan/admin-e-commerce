@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IconConst, Icons } from '@/icons/icons';
+import { ReactSortable } from 'react-sortablejs';
 import Spinner from './Spinner';
 
 export default function ProductForm({
@@ -11,15 +12,23 @@ export default function ProductForm({
 	description: existingDescription,
 	price: existingPrice,
 	productImages: existingProductImages,
+	category: existingCategory,
 }) {
 	const [title, setTitle] = useState(existingTitle || '');
 	const [description, setDescription] = useState(existingDescription || '');
+	const [category, setCategory] = useState(existingCategory || '');
 	const [price, setPrice] = useState(existingPrice || '');
 	const [productImages, setProductImages] = useState(existingProductImages || []);
 	const [goToProducts, setGoToProducts] = useState(false);
 	const [isUploading, setIsUploading] = useState(false);
+	const [categories, setCategories] = useState([]);
 	const router = useRouter();
-	console.log({ _id });
+
+	useEffect(() => {
+		axios.get('/api/categories').then((res) => {
+			setCategories(res.data);
+		});
+	}, []);
 
 	async function saveProduct(e) {
 		e.preventDefault();
@@ -28,6 +37,7 @@ export default function ProductForm({
 			description,
 			price,
 			productImages,
+			category,
 		};
 		if (_id) {
 			await axios.put('/api/products', {
@@ -44,7 +54,6 @@ export default function ProductForm({
 	}
 
 	async function uploadImages(e) {
-		console.log(e);
 		const files = e.target?.files;
 		if (files?.length > 0) {
 			setIsUploading(true);
@@ -54,12 +63,15 @@ export default function ProductForm({
 			}
 
 			const res = await axios.post('/api/upload', data);
-			console.log(res.data);
+
 			setProductImages((oldImages) => {
 				return [...oldImages, ...res.data.links];
 			});
 			setIsUploading(false);
 		}
+	}
+	function updateProductImages(productImages) {
+		setProductImages(productImages);
 	}
 
 	return (
@@ -71,20 +83,35 @@ export default function ProductForm({
 				value={title}
 				onChange={(e) => setTitle(e.target.value)}
 			/>
+			<label>Kategori</label>
+			<select value={category} onChange={(e) => setCategory(e.target.value)}>
+				<option value=''>Kategorize Edilmemiş</option>
+				{categories.length > 0 &&
+					categories.map((c) => (
+						<option key={c._id} value={c._id}>
+							{c.categoryName}
+						</option>
+					))}
+			</select>
 			<label>Foto</label>
 			<div className='mb-2 flex flex-wrap gap-1'>
-				{!!productImages?.length &&
-					productImages.map((link) => (
-						<div key={link} className='h-24'>
-							<img src={link} alt='' className='rounded-md w-28' />
-						</div>
-					))}
+				<ReactSortable
+					className='flex flex-wrap gap-1'
+					list={productImages}
+					setList={updateProductImages}>
+					{!!productImages?.length &&
+						productImages.map((link) => (
+							<div key={link} className='h-24'>
+								<img src={link} alt='' className='rounded-md w-28' />
+							</div>
+						))}
+				</ReactSortable>
 				{isUploading && (
 					<div className='h-24 p-1 flex items-center rounded-md'>
 						<Spinner />
 					</div>
 				)}
-				<label className='flex w-28 h-24 items-center cursor-grab justify-center rounded-md text-gray-600 bg-gray-200 border border-gray-300 hover:bg-blue-900 hover:text-white '>
+				<label className='flex w-28 h-24 items-center cursor-grab justify-center rounded-md text-gray-600 bg-gray-200 border border-gray-300 hover:bg-teal-800 hover:text-white '>
 					<Icons type={IconConst.UPLOAD} className='w-8 h-8' />
 					<input type='file' className='hidden' onChange={uploadImages} />
 				</label>

@@ -4,13 +4,13 @@ import { useRouter } from 'next/router';
 
 export default function Nav() {
 	const inactiveLink = 'flex gap-1 p-1';
-	const activeLink = inactiveLink + ' bg-white text-blue-900 rounded-l-lg';
+	const activeLink = inactiveLink + ' bg-teal-50 text-teal-800 rounded-l-lg';
 	const router = useRouter();
 	const { pathname } = router;
 
 	return (
-		<aside className='text-white p-4 pr-0'>
-			<Link href={'/'} className='flex gap-1 mb-4 mr-4'>
+		<aside className='text-teal-300 p-4 pr-0'>
+			<Link href={'/'} className='flex gap-1 p-1 mb-4 mr-4 bg-teal-700 rounded-md text-teal-200'>
 				<Icons type={IconConst.STOREICON} />
 				<span className=''>STShopAdmin</span>
 			</Link>
@@ -25,6 +25,12 @@ export default function Nav() {
 					className={pathname.includes('/products') ? activeLink : inactiveLink}>
 					<Icons type={IconConst.PRODUCTICON} />
 					Ürünler
+				</Link>
+				<Link
+					href={'/categories'}
+					className={pathname.includes('/categories') ? activeLink : inactiveLink}>
+					<Icons type={IconConst.CATEGORIES} />
+					Kategoriler
 				</Link>
 				<Link
 					href={'/orders'}
