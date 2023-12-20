@@ -18,7 +18,6 @@ export default function Products() {
 			<Link className='bg-teal-800 text-white rounded-md py-1 px-2' href={'/products/new'}>
 				Yeni ürün ekle
 			</Link>
-
 			<table className='basic mt-2'>
 				<thead>
 					<tr>
@@ -31,12 +30,12 @@ export default function Products() {
 						<tr key={product._id} id={product._id}>
 							<td>{product.title}</td>
 							<td>
-								<Link href={'products/edit/' + product._id}>
+								<Link href={'products/edit/' + product._id} className='primary'>
 									<Icons type={IconConst.PEN} className='w-4 h-4' />
 								</Link>
 
-								<Link href={'products/delete/' + product._id}>
-									<Icons type={IconConst.TRASH} className='w-4 h-4' />
+								<Link href={'products/delete/' + product._id} className='default'>
+									<Icons type={IconConst.TRASH} className='w-4 h-4 bg-rose-700' />
 								</Link>
 							</td>
 						</tr>

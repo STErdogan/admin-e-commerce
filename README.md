@@ -1,8 +1,10 @@
 # ST-Ecommerce with Nextjs
-## v0.1.2
-Category some progress 
+## v0.1.3
+Category Properties Solved
 
 ## Getting Started
+
+npm i
 
 First, run the development server:
 

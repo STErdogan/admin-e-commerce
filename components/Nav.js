@@ -44,6 +44,7 @@ export default function Nav() {
 					<Icons type={IconConst.SETTINGSICON} />
 					Ayarlar
 				</Link>
+				
 			</nav>
 		</aside>
 	);

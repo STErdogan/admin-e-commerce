@@ -10,7 +10,7 @@ export default function Home() {
 				<h2>
 					Merhaba,<b>{session?.user?.name}</b>
 				</h2>
-				<div className='flex bg-yellow-50 gap-1 text-teal-800 rounded-lg overflow-hidden'>
+				<div className='flex bg-yellow-50 gap-1 text-teal-800 rounded-md overflow-hidden'>
 					<img
 						src={session?.user?.image}
 						alt={session?.user?.name}

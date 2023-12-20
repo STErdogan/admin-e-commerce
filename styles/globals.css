@@ -38,8 +38,11 @@ table.basic tr td {
 	@apply border border-gray-200 p-1;
 }
 
-table.basic a {
+table.basic a.primary {
 	@apply bg-teal-800 text-white text-sm py-1 px-2 rounded-md inline-flex gap-1 mr-1;
+}
+table.basic a.default {
+	@apply bg-rose-700 text-white text-sm py-1 px-2 rounded-md inline-flex gap-1 mr-1;
 }
 
 .btn-default,
@@ -48,9 +51,9 @@ table.basic a {
 }
 
 .btn-red {
-	@apply bg-red-800 text-white;
+	@apply bg-rose-700 text-white;
 }
 
 .btn-default {
-	@apply bg-teal-800 text-white;
+	@apply bg-rose-700 text-white;
 }

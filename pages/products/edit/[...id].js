@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 
 export default function EditProductPage() {
 	const [productInfo, setProductInfo] = useState();
+
 	const router = useRouter();
 
 	const { id } = router.query;
