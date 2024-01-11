@@ -1,6 +1,6 @@
 # ST-Ecommerce with Nextjs
-## v0.1.3
-Category Properties Solved
+## v0.1.4
+Logout- Some css
 
 ## Getting Started
 

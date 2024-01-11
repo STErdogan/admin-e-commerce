@@ -21,15 +21,15 @@ export default function Products() {
 			<table className='basic mt-2'>
 				<thead>
 					<tr>
-						<td>Ürün Adı</td>
+						<td className='text-rose-700'>Ürün Adı</td>
 						<td></td>
 					</tr>
 				</thead>
 				<tbody>
 					{products.map((product) => (
 						<tr key={product._id} id={product._id}>
-							<td>{product.title}</td>
-							<td>
+							<td className='text-teal-900'>{product.title}</td>
+							<td className='text-center'>
 								<Link href={'products/edit/' + product._id} className='primary'>
 									<Icons type={IconConst.PEN} className='w-4 h-4' />
 								</Link>

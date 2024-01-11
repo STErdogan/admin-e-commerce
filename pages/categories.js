@@ -1,8 +1,8 @@
-import Layout from '@/components/Layout';
-import { IconConst, Icons } from '@/icons/icons';
 import axios from 'axios';
+import Layout from '@/components/Layout';
 import { useEffect, useState } from 'react';
 import { withSwal } from 'react-sweetalert2';
+import { IconConst, Icons } from '@/icons/icons';
 
 function Categories({ swal }) {
 	const [editedCategory, setEditedCategory] = useState(null);
@@ -105,7 +105,7 @@ function Categories({ swal }) {
 
 	return (
 		<Layout>
-			<h1>Kategoriler</h1>
+			<h1 className='text-rose-700'>Kategoriler</h1>
 			<label>
 				{editedCategory
 					? `Kategori Düzenle: ${editedCategory.categoryName}`
@@ -140,7 +140,7 @@ function Categories({ swal }) {
 						onClick={addProperty}
 						type='button'
 						className='btn-primary text-sm mb-2'>
-						Yeni özellik ekle
+						Özellik Ekle
 					</button>
 					{properties.length > 0 &&
 						properties.map((property, index) => (
@@ -194,7 +194,7 @@ function Categories({ swal }) {
 			{!editedCategory && (
 				<table className='basic mt-3'>
 					<thead>
-						<tr>
+						<tr className='text-rose-700'>
 							<td>Ürün</td>
 							<td>Kategori</td>
 							<td></td>
@@ -203,7 +203,7 @@ function Categories({ swal }) {
 					<tbody>
 						{categories.length > 0 &&
 							categories.map((category) => (
-								<tr key={category._id}>
+								<tr key={category._id} className='text-teal-800'>
 									<td>{category.categoryName}</td>
 									<td>{category?.parentCategory?.categoryName}</td>
 									<td className='text-center'>

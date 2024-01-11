@@ -10,8 +10,7 @@ img {
 input,
 textarea,
 select {
-	@apply border-2 border-gray-300 rounded-md px-1 w-full text-gray-700;
-	@apply mb-2;
+	@apply border border-gray-300 rounded-sm p-1 w-full text-gray-700 shadow-sm mb-2;
 }
 input:focus,
 textarea:focus,
@@ -21,6 +20,7 @@ select:focus {
 h1 {
 	@apply text-teal-800 mb-2 text-xl;
 }
+
 label {
 	@apply text-teal-800;
 }
@@ -28,14 +28,14 @@ label {
 	@apply bg-teal-800 text-white px-4 py-1 rounded-md;
 }
 table.basic {
-	@apply w-full;
+	@apply w-full  rounded-sm shadow-sm;
 }
 table.basic thead tr td {
-	@apply bg-yellow-50;
+	@apply bg-yellow-50 px-2;
 }
 
 table.basic tr td {
-	@apply border border-gray-200 p-1;
+	@apply border border-gray-300 p-1 px-4;
 }
 
 table.basic a.primary {

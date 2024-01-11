@@ -1,10 +1,15 @@
-import multiparty from 'multiparty';
-import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import fs from 'fs';
 import mime from 'mime-types';
+import multiparty from 'multiparty';
 const bucketName = 'stalyf-next-ecommerce';
+import { mongooseConnect } from '@/lib/mongoose';
+import { isAdminRequest } from './auth/[...nextauth]';
+import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 
 export default async function handle(req, res) {
+	await mongooseConnect();
+	await isAdminRequest(req, res);
+
 	const form = new multiparty.Form();
 
 	const { fields, files } = await new Promise((resolve, reject) => {

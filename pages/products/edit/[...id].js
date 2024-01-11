@@ -21,7 +21,7 @@ export default function EditProductPage() {
 
 	return (
 		<Layout>
-			<h1>Ürün Düzenleme</h1>
+			<h1 className='text-rose-700'>Ürün Düzenleme</h1>
 			{productInfo && <ProductForm {...productInfo} />}
 		</Layout>
 	);

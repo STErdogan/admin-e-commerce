@@ -2,7 +2,7 @@
 import { IconConst, Icons } from "@/icons/icons"; 
 <Icons type={IconConst.PEN} className="w-4 h-4" /> 
 
-YENİ ICON EKLERKEN className bağlantısını unutma!
+YENİ ICON EKLERKEN icontype parametresini unutma!
 {icontype.className ? icontype.className : "w-6 h-6"}
 */
 
@@ -18,6 +18,8 @@ export const IconConst = {
 	UPLOAD: 'UPLOAD',
 	CATEGORIES: 'CATEGORIES',
 	HIFIVE: 'HIFIVE',
+	LOGOUT: 'LOGOUT',
+	NAVBAR: 'NAVBAR',
 };
 
 export const Icons = (icontype) => {
@@ -34,7 +36,7 @@ export const Icons = (icontype) => {
 					preserveAspectRatio='xMidYMid meet'>
 					<g
 						transform='translate(0.000000,1550.000000) scale(0.100000,-0.100000)'
-						fill='#000000'
+						fill={icontype.IconColor}
 						stroke='none'>
 						<path d='M3112 15123 c-19 -8 -52 -79 -52 -113 0 -41 21 -35 36 9 5 17 21 45 35 60 34 39 24 62 -19 44z' />
 						<path d='M3160 15059 c0 -12 -8 -23 -19 -26 -15 -4 -19 -13 -17 -44 2 -46 8 -53 36 -44 l22 7 -23 16 c-20 14 -21 16 -5 28 9 6 25 10 35 7 28 -7 32 10 11 45 -23 37 -40 41 -40 11z' />
@@ -418,6 +420,38 @@ export const Icons = (icontype) => {
 						<path d='M820 269 c0 -5 5 -7 10 -4 6 3 10 8 10 11 0 2 -4 4 -10 4 -5 0 -10 -5 -10 -11z' />
 						<path d='M810 219 c-14 -33 -9 -43 28 -54 19 -5 25 -1 37 27 12 29 12 34 -2 46 -28 20 -50 14 -63 -19z m58 -15 c-11 -24 -42 -32 -53 -14 -12 20 13 48 39 43 22 -5 23 -8 14 -29z' />
 					</g>
+				</svg>
+			);
+		case IconConst.LOGOUT:
+			return (
+				<svg
+					xmlns='http://www.w3.org/2000/svg'
+					fill='none'
+					viewBox='0 0 24 24'
+					strokeWidth={1.5}
+					stroke='currentColor'
+					className={icontype.className ? icontype.className : 'w-6 h-6'}>
+					<path
+						strokeLinecap='round'
+						strokeLinejoin='round'
+						d='M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15'
+					/>
+				</svg>
+			);
+		case IconConst.NAVBAR:
+			return (
+				<svg
+					xmlns='http://www.w3.org/2000/svg'
+					fill='none'
+					viewBox='0 0 24 24'
+					strokeWidth={1.5}
+					stroke='currentColor'
+					className={icontype.className ? icontype.className : 'w-6 h-6'}>
+					<path
+						strokeLinecap='round'
+						strokeLinejoin='round'
+						d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
+					/>
 				</svg>
 			);
 	}

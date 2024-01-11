@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import axios from 'axios';
+import Spinner from './Spinner';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { IconConst, Icons } from '@/icons/icons';
 import { ReactSortable } from 'react-sortablejs';
-import Spinner from './Spinner';
 
 export default function ProductForm({
 	_id,
@@ -77,20 +77,6 @@ export default function ProductForm({
 		setProductImages(productImages);
 	}
 
-	const propertiesToFill = [];
-	if (categories.length > 0 && category) {
-		let catInfo = categories.find(({ _id }) => _id === category);
-		console.log({ catInfo }, 'first loop');
-		propertiesToFill.push(...catInfo.properties);
-		while (catInfo?.parentCategory?._id) {
-			const parentCat = categories.find(({ _id }) => _id === catInfo?.parentCategory?._id);
-			propertiesToFill.push(...parentCat.properties);
-			catInfo = parentCat;
-			console.log({ catInfo }, 'while loop');
-		}
-		console.log({ propertiesToFill });
-	}
-
 	function productPropHandler(propName, value) {
 		setProductProperties((prev) => {
 			const newProductProps = { ...prev };
@@ -98,7 +84,18 @@ export default function ProductForm({
 			return newProductProps;
 		});
 	}
-	console.log({productProperties});
+
+	const propertiesToFill = [];
+	if (categories.length > 0 && category) {
+		let catInfo = categories.find(({ _id }) => _id === category);
+
+		propertiesToFill.push(...catInfo.properties);
+		while (catInfo?.parentCategory?._id) {
+			const parentCat = categories.find(({ _id }) => _id === catInfo?.parentCategory?._id);
+			propertiesToFill.push(...parentCat.properties);
+			catInfo = parentCat;
+		}
+	}
 
 	return (
 		<form onSubmit={saveProduct}>
@@ -110,27 +107,31 @@ export default function ProductForm({
 				onChange={(e) => setTitle(e.target.value)}
 			/>
 			<label>Kategori</label>
-			<select value={category} onChange={(e) => setCategory(e.target.value)}>
-				<option value=''>Kategorize Edilmemiş</option>
+			<select value={category} required onChange={(e) => setCategory(e.target.value)}>
+				<option value='' key=''>
+					Kategorize Edilmemiş
+				</option>
 				{categories.length > 0 &&
 					categories.map((c) => (
-						<option key={c._id} value={c._id}>
+						<option key={c._id} value={c._id} className='text'>
 							{c.categoryName}
 						</option>
 					))}
 			</select>
 			{propertiesToFill.length > 0 &&
 				propertiesToFill.map((p) => (
-					<div className='flex gap-1' key={p._id} id={p._id}>
-						<div>{p.name}</div>
-						<select
-							key={p._id}
-							value={productProperties[p.name]}
-							onChange={(e) => productPropHandler(p.name, e.target.value)}>
-							{p.values.map((v) => (
-								<option key={v}>{v}</option>
-							))}
-						</select>
+					<div className='' key={p._id} id={p._id}>
+						<label>{p.name[0].toUpperCase() + p.name.substring(1).toLowerCase()}</label>
+						<div>
+							<select
+								key={p._id}
+								value={productProperties[p.name]}
+								onChange={(e) => productPropHandler(p.name, e.target.value)}>
+								{p.values.map((v) => (
+									<option key={v}>{v}</option>
+								))}
+							</select>
+						</div>
 					</div>
 				))}
 
@@ -152,7 +153,7 @@ export default function ProductForm({
 						<Spinner />
 					</div>
 				)}
-				<label className='flex w-28 h-24 items-center cursor-grab justify-center rounded-md text-gray-600 bg-gray-200 border border-gray-300 hover:bg-teal-800 hover:text-white '>
+				<label className='flex w-28 h-24 items-center cursor-grab justify-center rounded-md text-gray-600 shadow-sm bg-white border border-gray-200 hover:bg-teal-800 hover:text-white hover:shadow-teal-800 '>
 					<Icons type={IconConst.UPLOAD} className='w-8 h-8' />
 					<input type='file' className='hidden' onChange={uploadImages} />
 				</label>
