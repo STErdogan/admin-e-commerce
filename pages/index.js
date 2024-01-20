@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Layout from '@/components/Layout';
 import { useSession } from 'next-auth/react';
-import { IconConst, Icons } from '@/icons/icons';
+/* import { IconConst, Icons } from '@/icons/icons'; */
 
 export default function Home() {
 	const { data: session } = useSession();
@@ -19,13 +19,13 @@ export default function Home() {
 						className='w-6 h-6'
 						referrerPolicy='no-referrer'
 					/>
-					{session?.user?.email === 'salihtarike@gmail.com' && (
+					{/* {session?.user?.email === 'salihtarike@gmail.com' && (
 						<Icons
 							type={IconConst.STALYF}
 							className='w-6 h-6 px-0'
 							IconColor='rgb(17 94 89)'
 						/>
-					)}
+					)} */}
 					<span className='px-1'>{session?.user?.name}</span>
 				</div>
 			</div>

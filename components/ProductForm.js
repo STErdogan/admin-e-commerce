@@ -112,23 +112,23 @@ export default function ProductForm({
 					Kategorize Edilmemiş
 				</option>
 				{categories.length > 0 &&
-					categories.map((c) => (
-						<option key={c._id} value={c._id} className='text'>
+					categories.map((c, i) => (
+						<option key={i} value={c._id} className='text'>
 							{c.categoryName}
 						</option>
 					))}
 			</select>
 			{propertiesToFill.length > 0 &&
-				propertiesToFill.map((p) => (
-					<div className='' key={p._id} id={p._id}>
+				propertiesToFill.map((p, i) => (
+					<div className='' key={i} id={p._id}>
 						<label>{p.name[0].toUpperCase() + p.name.substring(1).toLowerCase()}</label>
 						<div>
 							<select
 								key={p._id}
 								value={productProperties[p.name]}
 								onChange={(e) => productPropHandler(p.name, e.target.value)}>
-								{p.values.map((v) => (
-									<option key={v}>{v}</option>
+								{p.values.map((v, i) => (
+									<option key={i}>{v}</option>
 								))}
 							</select>
 						</div>
@@ -142,8 +142,8 @@ export default function ProductForm({
 					list={productImages}
 					setList={updateProductImages}>
 					{!!productImages?.length &&
-						productImages.map((link) => (
-							<div key={link} className='h-24'>
+						productImages.map((link, i) => (
+							<div key={i} className='h-24'>
 								<img src={link} alt='' className='rounded-md w-28' />
 							</div>
 						))}
